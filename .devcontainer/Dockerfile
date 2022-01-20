@@ -165,3 +165,7 @@ RUN apt-get install -y \
 
 # RUN rosdep update && rosdep install --from-paths src --ignore-src -r -y
 RUN pip install smbus
+
+# bash additions
+COPY bashrc_add.sh /tmp/
+RUN cat /tmp/bashrc_add.sh >> /home/ros/.bashrc
