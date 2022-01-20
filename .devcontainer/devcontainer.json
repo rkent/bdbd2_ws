@@ -9,21 +9,25 @@
     "target": "bdbd2"
 	},
 	"remoteUser": "ros",
+  // /dev/snd may not be needed.
 	"runArgs": [
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
 		"--security-opt=apparmor:unconfined",
     "--device=/dev/i2c-1",
+    "--device=/dev/bus",
+    "--device=/dev/snd",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-    "-e 'ROBOT_NAME=BDBD2'",
+    "--name=bdbd2"
 	],
 	"containerEnv": { "DISPLAY": "${localEnv:DISPLAY}" },
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.profiles.linux": {
 			"bash": {
-				"path": "bash"
+				"path": "bash",
+        "args": ["-l"],
 			},
 		},
 		"terminal.integrated.defaultProfile.linux": "bash"

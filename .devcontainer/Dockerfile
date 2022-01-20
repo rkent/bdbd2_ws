@@ -161,11 +161,29 @@ RUN apt-get install -y \
   python-is-python3 \
   doxygen \
   graphviz \
-  i2c-tools
+  i2c-tools \
+  espeak-ng \
+  python3-pyaudio \
+  alsa-utils
 
 # RUN rosdep update && rosdep install --from-paths src --ignore-src -r -y
-RUN pip install smbus
+RUN pip install smbus Adafruit_MotorHAT
+
+# Respeaker firmware
+#RUN pip install py-espeak-ng
+#RUN pip install pyusb click
+#RUN git clone https://github.com/respeaker/usb_4_mic_array.git /home/ros/respeaker
 
 # bash additions
 COPY bashrc_add.sh /tmp/
 RUN cat /tmp/bashrc_add.sh >> /home/ros/.bashrc
+
+#RUN apt-get install -y \
+#  usbutils \
+#  pulseaudio
+
+#COPY 60-respeaker.rules /etc/udev/rules.d
+COPY asound.conf /etc/
+#COPY pulse.conf /tmp/pulse.conf
+#RUN cat /tmp/pulse.conf >> /etc/pulse/default.pa
+RUN usermod -aG audio ros
