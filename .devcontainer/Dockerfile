@@ -167,7 +167,10 @@ RUN apt-get install -y \
   alsa-utils
 
 # RUN rosdep update && rosdep install --from-paths src --ignore-src -r -y
-RUN pip install smbus Adafruit_MotorHAT
+RUN pip install smbus
+RUN pip install google-cloud-texttospeech
+RUN pip install google-cloud-speech
+RUN pip install py-espeak-ng
 
 # Respeaker firmware
 #RUN pip install py-espeak-ng
@@ -186,4 +189,9 @@ RUN cat /tmp/bashrc_add.sh >> /home/ros/.bashrc
 COPY asound.conf /etc/
 #COPY pulse.conf /tmp/pulse.conf
 #RUN cat /tmp/pulse.conf >> /etc/pulse/default.pa
+#RUN pip install Jetson.GPIO
+#RUN pip install adafruit-circuitpython-ina260
+RUN groupadd -f -r gpio
 RUN usermod -aG audio ros
+RUN usermod -aG gpio ros
+#ENV BLINKA_FORCEBOARD JETSON_NANO
