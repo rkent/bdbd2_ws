@@ -13,13 +13,13 @@
 	"runArgs": [
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
-		"--security-opt=seccomp:unconfined",
-		"--security-opt=apparmor:unconfined",
+		//"--security-opt=seccomp:unconfined",
+		//"--security-opt=apparmor:unconfined",
     "--device=/dev/i2c-1",
     "--device=/dev/bus",
     "--device=/dev/snd",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-    "--name=bdbd2",
+    "--name=bdbd2_vsc",
 		//"--privileged"
 	],
 	"containerEnv": { "DISPLAY": "${localEnv:DISPLAY}" },

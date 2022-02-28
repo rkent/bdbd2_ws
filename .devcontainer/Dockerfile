@@ -195,3 +195,46 @@ RUN groupadd -f -r gpio
 RUN usermod -aG audio ros
 RUN usermod -aG gpio ros
 #ENV BLINKA_FORCEBOARD JETSON_NANO
+
+# opencv
+RUN apt-get install -y python3-opencv
+
+# gstreamer: See https://gitlab.com/nvidia/container-images/l4t-base/-/blob/master/Dockerfile.l4t
+RUN apt-get update && apt-get install -qq -y --no-install-recommends \
+    bc \
+    bzip2 \
+    can-utils \
+    freeglut3-dev \
+    gstreamer1.0-alsa \
+    gstreamer1.0-libav \
+    gstreamer1.0-plugins-bad \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-ugly \
+    gstreamer1.0-tools \
+    i2c-tools \
+    iw \
+    kbd \
+    language-pack-en-base \
+    #libapt-inst2.0 \
+    libcanberra-gtk3-module \
+    libgles2 \
+    libglu1-mesa-dev \
+    libglvnd-dev \
+    libgtk-3-0 \
+    libpython2.7 \
+    libudev1 \
+    libvulkan1 \
+    libzmq5 \
+    mtd-utils \
+    parted \
+    pciutils \
+    python \
+    python-pexpect \
+    python3-distutils \
+    sox \
+    udev \
+    vulkan-utils \
+    wget \
+    wireless-tools wpasupplicant
+
