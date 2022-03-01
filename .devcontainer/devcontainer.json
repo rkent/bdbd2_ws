@@ -20,7 +20,8 @@
     "--device=/dev/snd",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
     "--name=bdbd2_vsc",
-		//"--privileged"
+		"--volume=${localEnv:HOME}/secrets:/secrets",
+		"--privileged"
 	],
 	"containerEnv": { "DISPLAY": "${localEnv:DISPLAY}" },
 	// Set *default* container specific settings.json values on container create.

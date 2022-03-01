@@ -3,3 +3,4 @@ install/*
 src/*
 log/*
 
+.vscode/browse.*
