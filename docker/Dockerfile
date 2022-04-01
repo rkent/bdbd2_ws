@@ -154,51 +154,25 @@ ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
 ENV QT_X11_NO_MITSHM 1
 
+# bash additions
+COPY config/bashrc_add.sh /tmp/
+RUN cat /tmp/bashrc_add.sh >> /home/ros/.bashrc
+
 # Extra additions to support bdbd2
 FROM dev as bdbd2 
 # tweaks to move upstream eventually
 RUN apt-get install -y \
   python-is-python3 \
   doxygen \
-  graphviz \
-  i2c-tools \
-  espeak-ng \
-  python3-pyaudio \
-  alsa-utils
+  graphviz
 
-# RUN rosdep update && rosdep install --from-paths src --ignore-src -r -y
-RUN pip install smbus
-RUN pip install google-cloud-texttospeech
-RUN pip install google-cloud-speech
-RUN pip install py-espeak-ng
-
-# Respeaker firmware
-#RUN pip install py-espeak-ng
-#RUN pip install pyusb click
-#RUN git clone https://github.com/respeaker/usb_4_mic_array.git /home/ros/respeaker
-
-# bash additions
-COPY bashrc_add.sh /tmp/
-RUN cat /tmp/bashrc_add.sh >> /home/ros/.bashrc
-
-#RUN apt-get install -y \
-#  usbutils \
-#  pulseaudio
-
-#COPY 60-respeaker.rules /etc/udev/rules.d
-COPY asound.conf /etc/
-#COPY pulse.conf /tmp/pulse.conf
-#RUN cat /tmp/pulse.conf >> /etc/pulse/default.pa
-#RUN pip install Jetson.GPIO
-#RUN pip install adafruit-circuitpython-ina260
-RUN groupadd -f -r gpio
-RUN usermod -aG audio ros
-RUN usermod -aG gpio ros
 #ENV BLINKA_FORCEBOARD JETSON_NANO
 
 # opencv
 RUN apt-get install -y python3-opencv
 
+# Docker on bdbd robot jetson nano
+FROM dev as nano
 # gstreamer: See https://gitlab.com/nvidia/container-images/l4t-base/-/blob/master/Dockerfile.l4t
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
     bc \
@@ -237,4 +211,26 @@ RUN apt-get update && apt-get install -qq -y --no-install-recommends \
     vulkan-utils \
     wget \
     wireless-tools wpasupplicant
+
+RUN pip install smbus
+RUN pip install py-espeak-ng
+# RUN rosdep update && rosdep install --from-paths src --ignore-src -r -y
+RUN pip install google-cloud-texttospeech
+RUN pip install google-cloud-speech
+
+RUN apt-get install -y \
+  espeak-ng \
+  python3-pyaudio \
+  alsa-utils
+#RUN pip install Jetson.GPIO
+#RUN pip install adafruit-circuitpython-ina260
+# Respeaker firmware
+#RUN pip install py-espeak-ng
+#RUN pip install pyusb click
+#RUN git clone https://github.com/respeaker/usb_4_mic_array.git /home/ros/respeaker
+COPY config/asound.conf /etc/
+
+RUN groupadd -f -r gpio
+RUN usermod -aG audio ros
+RUN usermod -aG gpio ros
 

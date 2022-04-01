@@ -1,27 +1,21 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
-	"dockerFile": "Dockerfile",
+	"context": "../docker",
+	"dockerFile": "../docker/ros2desktop.Dockerfile",
 	"build": {
 		"args": {
 			"WORKSPACE": "${containerWorkspaceFolder}",
-      "I2C_GROUP": "108"
 		},
-    "target": "bdbd2"
 	},
-	"remoteUser": "ros",
+	"remoteUser": "1000",
   // /dev/snd may not be needed.
 	"runArgs": [
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
-		//"--security-opt=seccomp:unconfined",
-		//"--security-opt=apparmor:unconfined",
-    "--device=/dev/i2c-1",
-    "--device=/dev/bus",
-    "--device=/dev/snd",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
     "--name=bdbd2_vsc",
 		"--volume=${localEnv:HOME}/secrets:/secrets",
-		"--privileged"
+		"--hostname=ros2"
 	],
 	"containerEnv": { "DISPLAY": "${localEnv:DISPLAY}" },
 	// Set *default* container specific settings.json values on container create.
@@ -38,7 +32,7 @@
 		"dotjoshjohnson.xml",
 		"zachflower.uncrustify",
 		"ms-azuretools.vscode-docker",
-		"ms-iot.vscode-ros",
+		// "ms-iot.vscode-ros",
 		"ms-python.python",
 		"ms-vscode.cpptools",
 		"redhat.vscode-yaml",

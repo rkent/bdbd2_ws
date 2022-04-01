@@ -1,6 +1,5 @@
 build/*
 install/*
-src/*
 log/*
 
 .vscode/browse.*
