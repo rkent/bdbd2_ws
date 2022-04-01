@@ -47,6 +47,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
   # [Optional] Add sudo support for the non-root user
   && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
   && chmod 0440 /etc/sudoers.d/$USERNAME
+
+RUN echo "PATH=~/.local/bin:$PATH" >> /home/$USERNAME/.bashrc
 ENV force_color_prompt=yes
 ENV DEBIAN_FRONTEND=
 

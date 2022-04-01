@@ -1,7 +1,7 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
 	"context": "..",
-	"dockerFile": "../docker/ros2desktop.Dockerfile",
+	"dockerFile": "../docker/${localEnv:BDBD2_DEVCONTAINER}.Dockerfile",
 	"build": {
 		"args": {
 			"WORKSPACE": "${containerWorkspaceFolder}",
@@ -13,9 +13,9 @@
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-    "--name=bdbd2_vsc",
+    "--name=${localEnv:BDBD2_DEVCONTAINER}",
 		"--volume=${localEnv:HOME}/secrets:/secrets",
-		"--hostname=ros2"
+		"--hostname=${localEnv:BDBD2_DEVCONTAINER}"
 	],
 	"containerEnv": { "DISPLAY": "${localEnv:DISPLAY}" },
 	// Set *default* container specific settings.json values on container create.

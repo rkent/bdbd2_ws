@@ -9,4 +9,6 @@ specs=(\
   [demo_nodes_cpp]="ubuntu20 ros2base demo_nodes_cpp"\
   [ros2dev]="ubuntu20 ros2base ros2dev"\
   [ros2desktop]="ubuntu20 ros2base ros2dev ros2desktop"\
+  [torch10_2]="ubuntu20 ros2base ros2dev torch10_2"\
+  [transformers10_2]="ubuntu20 ros2base ros2dev torch10_2 transformers"
 )
