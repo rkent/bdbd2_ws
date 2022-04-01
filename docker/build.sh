@@ -15,5 +15,5 @@ for key in ${!specs[@]}; do
   docker build \
     --tag bdbd2/$key:latest \
     -f $key.Dockerfile \
-    .
+    ..
 done

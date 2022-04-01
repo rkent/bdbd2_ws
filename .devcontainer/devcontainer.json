@@ -1,6 +1,6 @@
 // See https://aka.ms/vscode-remote/devcontainer.json for format details.
 {
-	"context": "../docker",
+	"context": "..",
 	"dockerFile": "../docker/ros2desktop.Dockerfile",
 	"build": {
 		"args": {
