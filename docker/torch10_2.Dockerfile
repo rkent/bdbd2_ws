@@ -122,12 +122,11 @@ RUN apt-get install -y \
 RUN git config --system user.email "kent@caspia.com" \
   && git config --system user.name "R. Kent James"
 
+COPY docker/show_git_branch.sh /tmp/show_git_branch.sh
+RUN cat /tmp/show_git_branch.sh >> /home/$USERNAME/.bashrc
 ENV DEBIAN_FRONTEND=
 
-# Pytorch installation with Cuda 10.2 (default as of 2022-04-01)
-
-ARG TRANSFORMERS_CACHE=/workspace/bdbd2_ws/.transformerscache
-ENV TRANSFORMERS_CACHE=$TRANSFORMERS_CACHE
+# Dockerfile fragment for Pytorch installation with Cuda 10.2 (default as of 2022-04-01)
 
 RUN python3 -m pip install torch torchvision torchaudio
 

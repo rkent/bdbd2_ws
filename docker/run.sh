@@ -28,11 +28,11 @@ docker run \
   --network=host \
   --volume=/tmp/.X11-unix:/tmp/.X11-unix \
   --volume="$HOME/.Xauthority:/home/ros/.Xauthority:rw" \
-  --name=$NAME \
+  --name=$NAME-r \
   --user=1000 \
   -v $(pwd)/..:/workspaces/bdbd2_ws \
   -v /home/kent/secrets:/secrets \
   --workdir="/workspaces/bdbd2_ws" \
   --env DISPLAY=$DISPLAY \
-  --hostname=$NAME \
+  --hostname=$NAME-r \
   $OPTIONS bdbd2/$NAME $PGM

@@ -122,5 +122,7 @@ RUN apt-get install -y \
 RUN git config --system user.email "kent@caspia.com" \
   && git config --system user.name "R. Kent James"
 
+COPY docker/show_git_branch.sh /tmp/show_git_branch.sh
+RUN cat /tmp/show_git_branch.sh >> /home/$USERNAME/.bashrc
 ENV DEBIAN_FRONTEND=
 
