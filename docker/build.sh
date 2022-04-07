@@ -7,10 +7,22 @@
 #  --tag bdbd2_ws:latest \
 #  ../.devcontainer
 
-source specs.sh
+source generate.sh
+
+if [ -z "$1" ]; then
+  keys=${!specs[@]}
+else
+  keys="$1"
+fi
+
+echo "parm: $1"
+echo "keys: $keys"
 
 # Generate Dockerfiles
-for key in ${!specs[@]}; do
+./generate.sh
+
+# Build Dockerfiles
+for key in $keys; do
   printf "\n building $key\n"
   docker build \
     --tag bdbd2/$key:latest \
