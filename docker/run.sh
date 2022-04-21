@@ -35,4 +35,5 @@ docker run \
   --workdir="/workspaces/bdbd2_ws" \
   --env DISPLAY=$DISPLAY \
   --hostname=$NAME-r \
+  --add-host "$NAME-r:127.0.0.1" \
   $OPTIONS bdbd2/$NAME $PGM

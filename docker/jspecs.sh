@@ -6,5 +6,6 @@ declare -A specs
 specs=(\
   [jtorch]="jtorch base"\
   [jbase]="jbase base" \
-  [jtransformers]="jtorch base transformers"
+  [jtransformers]="jtorch base transformers" \
+  [jtensorrt]="jtorch base transformers jtensorrt"
 )

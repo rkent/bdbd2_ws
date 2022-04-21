@@ -1,7 +1,7 @@
 ## jtransformers Dockerfile
 
 # Dockerfile base using nvidia jetson pytorch
-FROM nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.10-py3
+FROM nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.10-py3 AS base
 
 # Dockerfile fragment added to a base image
 

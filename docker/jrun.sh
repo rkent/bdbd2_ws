@@ -35,7 +35,8 @@ docker run \
   --runtime nvidia\
   -v $(pwd)/..:/workspaces/bdbd2_ws \
   -v /home/kent/secrets:/secrets \
-  --workdir="/workspaces/bdbd2_ws" \
   --env DISPLAY=$DISPLAY \
   --hostname=$NAME-r \
+  --add-host "$NAME-r:127.0.0.1" \
   $OPTIONS bdbd2/$NAME $PGM
+#  --workdir="/workspaces/bdbd2_ws" \
