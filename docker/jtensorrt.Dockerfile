@@ -130,6 +130,10 @@ RUN python3 setup.py bdist_wheel --use-cxx11-abi $* || exit 1
 RUN pip3 install ipywidgets --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host=files.pythonhosted.org
 RUN jupyter nbextension enable --py widgetsnbextension
 RUN pip3 install timm
+RUN pip3 install nvidia-pyindex
+RUN pip3 install polygraphy onnx onnx_graphsurgeon toml 
 
 # test install
-RUN pip3 uninstall -y torch_tensorrt && pip3 install ${TOP_DIR}/py/dist/*.whl
+RUN pip3 install ${TOP_DIR}/py/dist/*.whl
+
+WORKDIR /workspaces/bdbd2_ws
